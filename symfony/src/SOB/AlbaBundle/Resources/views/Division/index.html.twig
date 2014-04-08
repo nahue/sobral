@@ -1,0 +1,44 @@
+{% extends "CIMainBundle::base.html.twig" %}
+
+
+{% block body %}
+    <section class="scrollable" id="pjax-container">
+        <header>
+            <div class="row b-b m-l-none m-r-none">
+                <div class="col-sm-4">
+                    <h3 class="m-t m-b-none">{{ (docente.apellido ~ ", " ~ docente.nombre) | title }} | Divisiones</h3>
+
+                    <p class="block text-muted">Revise sus divisiones asignadas</p>
+                </div>
+            </div>
+        </header>
+        <section class="hbox wrapper">
+            <div class="col-lg-8">
+                {% for division in docente.fkDivisiones %}
+                    <div class="row">
+                        <section class="panel">
+                            <header class="panel-heading bg-primary lter no-borders">{{ division.fkAnio.descripcion }} {{ division.descripcion }} {{ division.fkOrientacion.nombre }} </header>
+                            <table class="table table-striped m-b-none text-sm">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for alumno in division.fkAlumnos %}
+                                    <tr>
+                                        <td>{{ alumno.nombre }}</td>
+                                        <td>{{ alumno.apellido }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </section>
+{% endblock %}
+

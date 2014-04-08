@@ -1,0 +1,148 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css"/>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/template_todo/font.css"/>
+    <link rel="stylesheet" href="styles/template_todo/plugin.css"/>
+    <link rel="stylesheet" href="styles/template_todo/app.css"/>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/ie.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <script src="bower_components/respond/src/respond.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+</head>
+<body ng-app="albaFrontendApp">
+
+<section class="hbox stretch">
+    <!-- barra lateral izquierda -->
+    <aside class="bg-success dker aside-sm nav-vertical" id="nav">
+        <section class="vbox">
+            <header class="bg-black nav-bar">
+                <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="#" class="nav-brand" data-toggle="fullscreen">Cliente</a>
+                <a class="btn btn-link visible-xs" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </header>
+
+            <section class="w-f scrollable">
+
+                <nav class="nav-primary hidden-xs">
+                    <ul class="nav">
+                        <li>
+                            <a href="#/">
+                                <i class="fa fa-dashboard"></i>
+                                <span>Escritorio</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#/docentes">
+                                <i class="fa fa-eye"></i>
+                                <span>Docentes</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+        </section>
+    </aside>
+    <!-- Contenido principal -->
+    <section id="content">
+        <div class="vbox">
+            <div app-view-segment="0" class="contenedor-vistas"></div>
+        </div>
+    </section>
+
+</section>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/underscore.string/dist/underscore.string.min.js"></script>
+
+<!-- build:js scripts/plugins.js -->
+<script src="bower_components/sass-bootstrap/js/affix.js"></script>
+<script src="bower_components/sass-bootstrap/js/alert.js"></script>
+<script src="bower_components/sass-bootstrap/js/button.js"></script>
+<script src="bower_components/sass-bootstrap/js/carousel.js"></script>
+<script src="bower_components/sass-bootstrap/js/transition.js"></script>
+<script src="bower_components/sass-bootstrap/js/collapse.js"></script>
+<script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+<script src="bower_components/sass-bootstrap/js/modal.js"></script>
+<script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
+<script src="bower_components/sass-bootstrap/js/tab.js"></script>
+<script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
+<script src="bower_components/sass-bootstrap/js/popover.js"></script>
+<!-- endbuild -->
+
+<!-- build:js scripts/modules.js -->
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-mocks/angular-mocks.js"></script>
+
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/libs.js -->
+<script src="scripts/template_todo/app.js"></script>
+<script src="scripts/template_todo/app.plugin.js"></script>
+<script src="scripts/template_todo/app.data.js"></script>
+
+
+
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/config/router.js"></script>
+<script src="scripts/httpBackendStub.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/docentes.js"></script>
+<script src="scripts/services/auth.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>

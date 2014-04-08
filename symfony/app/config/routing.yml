@@ -1,0 +1,14 @@
+ci_user:
+    resource: "@CIUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ci_main:
+    resource: "@CIMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+sob_alba:
+    resource: "@SOBAlbaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Colegio Sobral</title>
+  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    {% stylesheets  'bundles/ciassets/css/bootstrap.css' filter='cssrewrite'
+                    'bundles/ciassets/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+  <!--[if lt IE 9]>
+    {% javascripts   'bundles/ciassets/js/todo/ie/respond.min.js'
+                     'bundles/ciassets/js/todo/ie/html5.js'
+                     'bundles/ciassets/js/todo/ie/fix.js' %}
+        <script type="text/javascript" src="{{ asset_url }}" cache="false"></script>
+    {% endjavascripts %}
+  <![endif]-->
+</head>
+<body>
+  <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+    <a class="nav-brand" href="index.html">todo</a>
+    <div class="row m-n">
+      <div class="col-md-4 col-md-offset-4 m-t-lg">
+        <section class="panel">
+            {% block body %}
+            
+            {% endblock %}
+        </section>
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <footer id="footer">
+    <div class="text-center padder clearfix">
+      <p>
+        <small>Colegio DR. Jose Maria Sobral<br>&copy; 2013</small>
+      </p>
+    </div>
+  </footer>
+  <!-- / footer -->
+  
+    {% javascripts 'bundles/ciassets/js/jquery-1.10.2.js'
+                   'bundles/ciassets/js/bootstrap.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+  
+    {% javascripts 'bundles/ciassets/js/todo/app.js'
+                   'bundles/ciassets/js/todo/app.plugin.js'
+                   'bundles/ciassets/js/todo/app.data.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+</body>
+</html>

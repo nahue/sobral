@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html ng-app='ci'>
+<head>
+
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% stylesheets  'bundles/ciassets/css/bootstrap.css' filter='cssrewrite'
+                    'bundles/ciassets/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}"/>
+
+    {% stylesheets '@CIMainBundle/Resources/public/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+    <!--[if lt IE 9]>
+    {% javascripts   'bundles/ciassets/js/todo/ie/respond.min.js'
+                     'bundles/ciassets/js/todo/ie/html5.js'
+                     'bundles/ciassets/js/todo/ie/fix.js' %}
+    <script type="text/javascript" src="{{ asset_url }}" cache="false"></script>
+    {% endjavascripts %}
+    <![endif]-->
+
+
+</head>
+
+<body class="ng-cloak">
+
+
+<section class="hbox stretch">
+    <aside class="bg-success dker aside-sm nav-vertical" id="nav">
+        <section class="vbox">
+            <header class="bg-black nav-bar">
+                <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="#" class="nav-brand" data-toggle="fullscreen">{{ site_title }}</a>
+                <a class="btn btn-link visible-xs" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-comment-o"></i>
+                </a>
+            </header>
+
+            <section class="w-f scrollable">
+
+                <nav class="nav-primary hidden-xs">
+                    {{ knp_menu_render('main', { 'currentClass': 'active', 'template': 'CIMenuBundle:Menu:menu_template.html.twig' } ) }}
+                </nav>
+            </section>
+        </section>
+    </aside>
+    <section id="content">
+        <section class="vbox">
+            <header class="header bg-black navbar">
+                <div class="collapse navbar-collapse pull-in">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                                {{ app.user.fullname | default(app.user.username) }} <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInLeft">
+                                <li>
+                                    <a href="#">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="profile.html">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="badge bg-danger pull-right">3</span>
+                                        Notifications
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="docs.html">Help</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">Salir</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            {% block body %}
+
+            {% endblock %}
+        </section>
+        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+    </section>
+</section>
+
+    {% javascripts 'bundles/ciassets/js/jquery-1.10.2.js'
+        'bundles/ciassets/js/bootstrap.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    {% javascripts 'bundles/ciassets/js/todo/app.js'
+        'bundles/ciassets/js/todo/app.plugin.js'
+        'bundles/ciassets/js/todo/app.data.js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

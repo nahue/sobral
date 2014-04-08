@@ -1,0 +1,154 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "es"
+    trusted_proxies: ~
+    session:         ~
+    fragments:       ~
+    http_method_override: true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    globals:
+        site_title: "Pelis"
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:
+        - CIAssetsBundle
+        - CIMainBundle
+    #java: /usr/bin/java
+    filters:
+        cssrewrite: ~
+        less:
+            node: /usr/bin/node
+            node_paths: [/usr/lib/node_modules]
+            apply_to: "\.less$"
+
+        #closure:
+        #    jar: %kernel.root_dir%/Resources/java/compiler.jar
+        #yui_css:
+        #    jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar
+    #assets:
+    #    angular:
+    #        inputs:
+    #            -   '%kernel.root_dir%/../web/vendor/angular/angular.js'
+    #    angular-bootstrap:
+    #        inputs:
+    #            -   '%kernel.root_dir%/../web/vendor/angular-bootstrap/ui-bootstrap-tpls.js'
+    #    angular-route:
+    #        inputs:
+    #            -   '%kernel.root_dir%/../web/vendor/angular-route/angular-route.js'
+# Doctrine Configuration
+#braincrafted_bootstrap:
+#    less_filter: less
+#    auto_configure:
+#            assetic: true
+#            twig: true
+#            knp_menu: true
+#            knp_paginator: true
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+          default:
+            driver:   %database_driver%
+            host:     %database_host%
+            port:     %database_port%
+            dbname:   %database_name%
+            user:     %database_user%
+            password: %database_password%
+            charset:  UTF8
+            # if using pdo_sqlite as your database driver, add the path in parameters.yml
+            # e.g. database_path: %kernel.root_dir%/data/data.db3
+            # path:     %database_path%
+          alba:
+            driver:   %database_driver%
+            #host: 192.168.0.254
+            host: localhost
+            port:     %database_port%
+            dbname:   albadev
+            #user:     sfalba
+            password: mSi2010
+            user: root
+            charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+
+        default_entity_manager: default
+        entity_managers:
+          default:
+            connection: default
+            mappings:
+              CIMainBundle: ~
+              CIUserBundle: ~
+
+          alba:
+            connection: alba
+            mappings:
+              FOSUserBundle: ~
+              SOBAlbaBundle: ~
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+    spool:     { type: memory }
+
+services:
+    ci_menu.menu_builder:
+        class: CI\MenuBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", @service_container]
+        
+    ci_menu.menu.main:
+        class: Knp\Menu\MenuItem
+        factory_service: ci_menu.menu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request #needed as we have the request as a dependancy here
+        tags:
+            - { name: knp_menu.menu, alias: main }
+    ci_menu.menu.voter.request:
+        class: CI\MenuBundle\Menu\RequestVoter
+        arguments:
+            - @service_container
+        tags:
+            - { name: knp_menu.voter }
+            
+sensio_framework_extra:
+    view: { annotations: false }
+    router: { annotations: true }
+    
+fos_rest:
+    format_listener: false
+    view:
+        view_response_listener: true
+    routing_loader:
+        default_format: json
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: CI\UserBundle\Entity\User
+    registration:
+      form:
+        type: ci_user_registration

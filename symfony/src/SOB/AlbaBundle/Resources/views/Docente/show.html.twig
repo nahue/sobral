@@ -1,0 +1,23 @@
+{% extends "CIMainBundle::base.html.twig" %}
+
+
+{% block body %}
+
+	{{ docente.apellido }}, {{ docente.nombre }}
+<p>
+<ul>
+	
+        
+        {% for division in docente.fkDivisiones %}
+            Division: {{ division.descripcion }} (id: {{ division.id }} )
+            <p>Alumnos:
+            <ul>
+                {% for alumno in division.fkAlumnos %}
+                <li>{{alumno.nombre}} {{alumno.apellido}}</li>
+                {% endfor %}
+            </ul></p>
+        {% endfor %}
+</ul>
+</p>
+{% endblock %}
+

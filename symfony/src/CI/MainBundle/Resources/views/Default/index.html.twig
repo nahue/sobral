@@ -1,0 +1,23 @@
+{% extends "CIMainBundle::base.html.twig" %}
+
+{% block body %}
+    <section class="scrollable" id="pjax-container">
+        <section class="hbox wrapper">
+            <div class="col-lg-4">
+                <div class="row">
+                    <section class="panel portlet-item">
+                        <header class="panel-heading bg-info no-borders">
+                            Datos de Sistema
+                        </header>
+
+                        <ul class="list-group">
+                            <li class="list-group-item">Version Web Server: {{ version_webserver }}</li>
+                            <li class="list-group-item">Version PHP: {{ version_php }}</li>
+                        </ul>
+
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+    "name": "ci-main-bundle",
+    "dependencies": {
+        "jquery": "latest",
+        "bootstrap": "latest",
+        "angular": "latest",
+        "angular-route": "latest",
+        "angular-bootstrap": "latest",
+        "restangular": "latest",
+        "components-underscore": "latest"
+    }
+}

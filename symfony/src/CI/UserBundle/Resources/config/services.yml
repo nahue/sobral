@@ -1,0 +1,21 @@
+parameters:
+#    ci_user.example.class: CI\UserBundle\Example
+
+services:
+    ci_user_registration_form:
+        class: CI\UserBundle\Form\UserType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+          - { name: form.type, alias: ci_user_registration }
+
+    ci_user_registration_event:
+      class: CI\UserBundle\EventListener\UserRegistrationListener
+      arguments: [@doctrine, @router]
+      tags:
+        - { name: kernel.event_subscriber }
+
+    corresponde_a_docente_validator:
+      class: CI\UserBundle\Validator\Constraints\CorrespondeADocenteValidator
+      arguments: [@doctrine, @security.context]
+      tags:
+        - { name: validator.constraint_validator, alias: corresponde_a_docente }

@@ -1,0 +1,21 @@
+{% extends "CIMainBundle::base.html.twig" %}
+
+{% block title %}SOBAlbaBundle:Docente:index{% endblock %}
+
+{% block body %}
+<h1>Welcome to the Docente:index page</h1>
+
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+        </tr>
+        {% for docente in docentes %}
+            <tr>
+                <td>{{ docente.apellido }}</td>
+                <td>{{ docente.nombre }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
