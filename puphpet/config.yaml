@@ -5,16 +5,16 @@ vagrantfile-local:
         box_url: 'http://box.puphpet.com/ubuntu-precise12042-x64-vbox43.box'
         hostname: null
         network:
-            private_network: 10.10.10.10
+            private_network: 192.168.56.101
             forwarded_port:
-                LGSdpbTrbIUx:
-                    host: '9856'
+                dhL7KXKY1sLb:
+                    host: '5034'
                     guest: '22'
         provider:
             virtualbox:
                 modifyvm:
                     natdnshostresolver1: on
-                    memory: '1024'
+                    memory: '512'
                 setextradata:
                     VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root: 1
         provision:
@@ -26,13 +26,9 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            WBe45qBc2b0W:
-                source: ./symfony
-                target: /opt/symfony
-                nfs: 'true'
-            eyzlpY52uYsQ:
-                source: ./sobral
-                target: /opt/sobral
+            PW8VXhexfwNZ:
+                source: ./
+                target: /var/www
                 nfs: 'false'
         usable_port_range: 2200..2250
     ssh:
@@ -49,7 +45,7 @@ vagrantfile-local:
         host: detect
 server:
     packages:
-        - vim-tiny
+        - vim
     dot_files:
         -
             bash_aliases: null
@@ -73,35 +69,17 @@ apache:
         manage_group: false
         sendfile: 0
     modules:
-        - cache
         - php
         - rewrite
     vhosts:
-        WDUf4UjDsYhG:
-            servername: symfonydev.dev
+        kl2R1Up05btO:
+            servername: awesome.dev
             serveraliases:
-                - www.symfony.dev
-            docroot: /opt/symfony/web
+                - www.awesome.dev
+            docroot: /var/www/awesome
             port: '80'
             setenv:
                 - 'APP_ENV dev'
-                - 'APP_DEBUG true'
-            override:
-                - All
-            custom_fragment: ''
-            ssl_cert: ''
-            ssl_key: ''
-            ssl_chain: ''
-            ssl_certs_dir: ''
-        X9siJFDGjsPv:
-            servername: sobral.dev
-            serveraliases:
-                - www.sobral.dev
-            docroot: /opt/sobral/web
-            port: '80'
-            setenv:
-                - 'APP_ENV dev'
-                - 'APP_DEBUG true'
             override:
                 - All
             custom_fragment: ''
@@ -114,7 +92,7 @@ apache:
 nginx:
     install: 0
     vhosts:
-        EirevGkzkAjX:
+        Jhy1eF0VzS7z:
             server_name: awesome.dev
             server_aliases:
                 - www.awesome.dev
@@ -127,25 +105,17 @@ nginx:
             envvars:
                 - 'APP_ENV dev'
 hhvm:
-    install: ''
+    install: '1'
     nightly: 0
     settings:
         host: 127.0.0.1
         port: '9000'
 mysql:
     install: '1'
-    root_password: mSi2010
-    phpmyadmin: '1'
+    root_password: '123'
+    phpmyadmin: 0
     adminer: 0
-    databases:
-        bDmBDKFvN35L:
-            grant:
-                - ALL
-            name: symfony
-            host: localhost
-            user: symfony
-            password: mSi2010
-            sql_file: ''
+    databases: {  }
 postgresql:
     install: 0
     settings:

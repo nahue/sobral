@@ -1246,10 +1246,3 @@ if hash_key_equals($rabbitmq_values, 'install', 1) {
   }
 }
 
-include python
-class { 'python':
-  version    => 'system',
-  dev        => true,
-  virtualenv => true,
-  gunicorn   => true,
-}
